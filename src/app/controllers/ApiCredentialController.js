@@ -37,6 +37,18 @@ class ApiCredentialController {
     return res.json(credentials);
   }
 
+  async delete(req, res) {
+    const credential = await ApiCredential.findByPk(req.params.id);
+
+    if (!credential) {
+      return res.status(400).json({ error: 'Credentials not exists' });
+    }
+
+    credential.destroy();
+
+    return res.json({ msg: 'Credential deleted' });
+  }
+
   async update(req, res) {
     return res.json({ error: 'Not implemented yet' });
     // const schema = Yup.object().shape({
