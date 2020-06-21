@@ -8,12 +8,11 @@ import UserController from './app/controllers/UserController';
 import ValidatorSessionStore from './app/validators/SessionStore';
 import ValidatorUserStore from './app/validators/UserStore';
 import ValidatorUserUpdate from './app/validators/UserUpdate';
+import Home from './routes/Home';
 
 const routes = new Router();
 
-routes.get('/', (req, res) => {
-  return res.json({ msg: 'okey' });
-});
+routes.get('/', Home);
 routes.post('/users', ValidatorUserStore, UserController.store);
 routes.post('/sessions', ValidatorSessionStore, SessionController.store);
 
