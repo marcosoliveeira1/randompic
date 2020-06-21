@@ -11,6 +11,9 @@ import ValidatorUserUpdate from './app/validators/UserUpdate';
 
 const routes = new Router();
 
+routes.get('/', (req, res) => {
+  return res.json({ msg: 'okey' });
+});
 routes.post('/users', ValidatorUserStore, UserController.store);
 routes.post('/sessions', ValidatorSessionStore, SessionController.store);
 
