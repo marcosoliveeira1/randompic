@@ -29,5 +29,6 @@ routes.get('/images', ImageController.index);
 routes.post('/credentials', ApiCredentialController.store);
 routes.get('/credentials', ApiCredentialController.index);
 routes.put('/credentials/:id', ApiCredentialController.update);
+routes.delete('/credentials/:id', ApiCredentialController.delete);
 
 export default routes;
