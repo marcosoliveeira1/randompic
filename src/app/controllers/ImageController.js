@@ -1,12 +1,12 @@
 // import axios from 'axios';
 import api from '../../services/unsplash/api';
-import FactoryApiCredentials from '../factory/FactoryApiCredentials';
+import GetApiCredentialsService from '../services/GetApiCredentialsService';
 
 class ImageController {
   async index(req, res) {
     try {
-      const factoryCredentials = new FactoryApiCredentials('unsplash');
-      const credentials = await factoryCredentials.get();
+      // const factoryCredentials = new FactoryApiCredentials('unsplash');
+      const credentials = await GetApiCredentialsService.get('unsplash');
 
       const query = req.query.query || '';
       const page = req.query.page || 1;

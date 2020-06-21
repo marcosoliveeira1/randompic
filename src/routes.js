@@ -5,14 +5,17 @@ import FavoriteController from './app/controllers/FavoriteController';
 import ImageController from './app/controllers/ImageController';
 import SessionController from './app/controllers/SessionController';
 import UserController from './app/controllers/UserController';
+import ValidatorSessionStore from './app/validators/SessionStore';
+import ValidatorUserStore from './app/validators/UserStore';
+import ValidatorUserUpdate from './app/validators/UserUpdate';
 
 const routes = new Router();
 
-routes.post('/users', UserController.store);
-routes.post('/sessions', SessionController.store);
+routes.post('/users', ValidatorUserStore, UserController.store);
+routes.post('/sessions', ValidatorSessionStore, SessionController.store);
 
 routes.use(authMiddleware);
-routes.put('/users', UserController.update);
+routes.put('/users', ValidatorUserUpdate, UserController.update);
 
 routes.post('/favorites', FavoriteController.store);
 routes.get('/favorites', FavoriteController.index);

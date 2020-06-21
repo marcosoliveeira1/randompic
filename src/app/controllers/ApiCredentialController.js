@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import ApiCredential from '../models/ApiCredential';
+import GetApiCredentialsService from '../services/GetApiCredentialsService';
 
 class ApiCredentialController {
   async store(req, res) {
@@ -29,11 +30,10 @@ class ApiCredentialController {
   }
 
   async index(req, res) {
-    const credentials = await ApiCredential.findAll({
-      where: {
-        api_name: req.query.service || '',
-      },
-    });
+    const credentials = await GetApiCredentialsService.get(
+      req.query.service || ''
+    );
+
     return res.json(credentials);
   }
 
