@@ -47,7 +47,7 @@ class ImageController {
             }
           );
           // return res.json({ page: data.total_pages || 1, images });
-          return res.json(images);
+          return res.json({ images });
         }
       }
       return res.json({ errors: `Internal Error` });
