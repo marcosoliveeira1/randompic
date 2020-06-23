@@ -26,7 +26,9 @@ class ImageController {
         api.setHeader('authorization', `Bearer ${key}'`);
 
         // eslint-disable-next-line no-await-in-loop
-        const { data } = await api.get(endPoint, queryParams);
+        const response = await api.get(endPoint, queryParams);
+        const { data } = response;
+        console.log('log--->', response);
         if (data.errors && i + 1 === credentialsSize) {
           return res.json(data.errors);
         }
@@ -46,12 +48,14 @@ class ImageController {
               return { id, name, description, image, small, image_cropped };
             }
           );
-          return res.json({ page: data.total_pages || 1, images });
+          // return res.json({ page: data.total_pages || 1, images });
+          return res.json(images);
         }
       }
+
       return res.json({ errors: `Internal Error` });
     } catch (err) {
-      return res.json({ errors: `Connection Error: ${err}` });
+      return res.json({ errors: `Error: ${err}` });
     }
   }
 }
