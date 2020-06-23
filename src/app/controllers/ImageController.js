@@ -36,8 +36,12 @@ class ImageController {
           const imagesTemp = byTerm ? data.results : data;
 
           const images = imagesTemp.map(
-            ({ description, alt_description, urls: { raw: url } }) => {
-              return { description, alt_description, url };
+            ({
+              description: name,
+              alt_description: description,
+              urls: { raw: url },
+            }) => {
+              return { name, description, url };
             }
           );
 
