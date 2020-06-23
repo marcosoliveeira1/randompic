@@ -46,8 +46,7 @@ class ImageController {
               return { id, name, description, image, small, image_cropped };
             }
           );
-          // return res.json({ page: data.total_pages || 1, images });
-          return res.json({ images });
+          return res.json({ page: data.total_pages || 1, images });
         }
       }
       return res.json({ errors: `Internal Error` });
