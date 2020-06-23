@@ -42,7 +42,8 @@ class ImageController {
               alt_description: description,
               urls: { raw: image, small },
             }) => {
-              return { id, name, description, image, small };
+              const image_cropped = `${image}&ar=0.85:1&fit=crop`;
+              return { id, name, description, image, small, image_cropped };
             }
           );
           return res.json({ page: data.total_pages || 1, images });
