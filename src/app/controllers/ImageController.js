@@ -10,10 +10,13 @@ class ImageController {
       const query = req.query.query || '';
       const page = req.query.page || 1;
       const endPoint = query ? `search/photos/` : `photos/random`;
+
+      const per_page = 30;
+
       const queryParams = {
-        per_page: '30',
+        per_page,
         order_by: 'popular',
-        count: '30',
+        count: per_page,
         query,
         page,
       };
@@ -48,6 +51,12 @@ class ImageController {
               return { id, name, description, image, small, image_cropped };
             }
           );
+          res.set({
+            total_results: data.total || 100,
+            page,
+            per_page,
+          });
+
           // return res.json({ page: data.total_pages || 1, images });
           return res.json(images);
         }
