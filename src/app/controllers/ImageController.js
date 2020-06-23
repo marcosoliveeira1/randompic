@@ -5,12 +5,11 @@ import GetApiCredentialsService from '../services/GetApiCredentialsService';
 class ImageController {
   async index(req, res) {
     try {
-      // const factoryCredentials = new FactoryApiCredentials('unsplash');
       const credentials = await GetApiCredentialsService.get('unsplash');
 
       const query = req.query.query || '';
       const page = req.query.page || 1;
-      const endPoint = query ? `/search/photos/` : `photos/random`;
+      const endPoint = query ? `search/photos/` : `photos/random`;
       const queryParams = {
         per_page: '30',
         order_by: 'popular',
@@ -32,7 +31,17 @@ class ImageController {
           return res.json(data.errors);
         }
         if (!data.errors) {
-          return res.json(data);
+          const byTerm = !!data.total_pages;
+
+          const imagesTemp = byTerm ? data.results : data;
+
+          const images = imagesTemp.map(
+            ({ description, alt_description, urls: { raw: url } }) => {
+              return { description, alt_description, url };
+            }
+          );
+
+          return res.json({ page: data.total_pages || 1, images });
         }
       }
       return res.json({ errors: `Internal Error` });
