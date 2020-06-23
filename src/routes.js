@@ -3,6 +3,7 @@ import authMiddleware from './app/auth';
 import ApiCredentialController from './app/controllers/ApiCredentialController';
 import FavoriteController from './app/controllers/FavoriteController';
 import ImageController from './app/controllers/ImageController';
+import ImageControllerFake from './app/controllers/ImageControllerFake';
 import SessionController from './app/controllers/SessionController';
 import UserController from './app/controllers/UserController';
 import ValidatorSessionStore from './app/validators/SessionStore';
@@ -24,6 +25,7 @@ routes.get('/favorites', FavoriteController.index);
 routes.put('/favorites/:id', FavoriteController.delete);
 
 routes.get('/images', ImageController.index);
+routes.get('/imagesFake', ImageControllerFake.index);
 
 routes.post('/credentials', ApiCredentialController.store);
 routes.get('/credentials', ApiCredentialController.index);

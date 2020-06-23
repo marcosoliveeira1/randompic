@@ -41,14 +41,24 @@ class ImageController {
           const imagesTemp = byTerm ? data.results : data;
 
           const images = imagesTemp.map(
-            ({
-              id,
-              description: name,
-              alt_description: description,
-              urls: { raw: image, small },
-            }) => {
+            (
+              {
+                id,
+                description: name,
+                alt_description: description,
+                urls: { raw: image, small },
+              },
+              index
+            ) => {
               const image_cropped = `${image}&ar=0.85:1&fit=crop`;
-              return { id, name, description, image, small, image_cropped };
+              return {
+                id: `${index}${id}`,
+                name,
+                description,
+                image,
+                small,
+                image_cropped,
+              };
             }
           );
           res.set({
