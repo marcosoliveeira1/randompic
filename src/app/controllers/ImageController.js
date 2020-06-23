@@ -37,14 +37,14 @@ class ImageController {
 
           const images = imagesTemp.map(
             ({
+              id,
               description: name,
               alt_description: description,
               urls: { raw: url },
             }) => {
-              return { name, description, url };
+              return { id, name, description, url };
             }
           );
-
           return res.json({ page: data.total_pages || 1, images });
         }
       }
