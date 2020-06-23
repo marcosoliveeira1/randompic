@@ -40,9 +40,9 @@ class ImageController {
               id,
               description: name,
               alt_description: description,
-              urls: { raw: url },
+              urls: { raw: image, small },
             }) => {
-              return { id, name, description, url };
+              return { id, name, description, image, small };
             }
           );
           return res.json({ page: data.total_pages || 1, images });
