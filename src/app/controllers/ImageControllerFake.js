@@ -51,11 +51,11 @@ class ImageControllerFake {
       //         return { id, name, description, image, small, image_cropped };
       //       }
       //     );
-      //     res.set({
-      //       total_results: data.total || 100,
-      //       page,
-      //       per_page,
-      //     });
+      res.set({
+        total_results: fakeResponse.length || 100,
+        page,
+        per_page,
+      });
 
       //     // return res.json({ page: data.total_pages || 1, images });
       //     return res.json(images);
